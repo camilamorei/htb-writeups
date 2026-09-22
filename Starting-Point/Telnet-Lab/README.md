@@ -1,100 +1,80 @@
 # Hack The Box — Telnet Lab
 
-## Objetivo
+## Objective
 
-Identificar os serviços disponíveis no alvo, conectar ao serviço **Telnet** e localizar a flag no diretório inicial do usuário `root`.
+Identify the services available on the target, connect to the **Telnet** service, and locate the flag in the `root` user's home directory.
 
-## 1. Conexão VPN
+## 1. VPN Connection
 
-A conexão com a rede do Hack The Box foi estabelecida utilizando **OpenVPN**.
+The connection to the Hack The Box network was established using **OpenVPN**.
 
-## 2. Teste de conectividade
+## 2. Connectivity Test
 
-Foi utilizado o comando `ping` para verificar a conectividade com o alvo:
-
-```bash
-ping <IP_DO_ALVO>
-```
-
-O `ping` utiliza **ICMP Echo Requests** para verificar se o host está acessível.
-
-## 3. Enumeração de portas
-
-Foi utilizado o **Nmap** para identificar portas abertas:
+The `ping` command was used to verify connectivity to the target:
 
 ```bash
-nmap <IP_DO_ALVO>
-```
+ping <TARGET_IP>
 
-Durante a enumeração, foi identificada a seguinte porta:
+ping uses ICMP Echo Requests to check whether the host is reachable.
 
-```text
+## 3. Port Enumeration
+
+Nmap was used to identify open ports:
+
+nmap <TARGET_IP>
+
+During the enumeration, the following port was identified:
+
 23/tcp
-```
 
-A porta **23/TCP** está associada ao serviço **Telnet**.
+Port 23/TCP is associated with the Telnet service.
 
-## 4. Conexão via Telnet
+## 4. Telnet Connection
 
-Foi realizada uma conexão com o serviço:
+A connection was established to the service:
 
-```bash
-telnet <IP_DO_ALVO> 23
-```
+telnet <TARGET_IP> 23
 
-O acesso foi realizado utilizando o usuário identificado no exercício e uma senha em branco.
+Access was obtained using the username identified in the exercise and a blank password.
 
-Após o login, foi possível confirmar o usuário atual com:
+After logging in, the current user was confirmed with:
 
-```bash
 whoami
-```
 
-Resultado:
+Result:
 
-```text
 root
-```
+5. Locating the Flag
 
-## 5. Localização da flag
+After gaining access as root, the user's home directory was accessed:
 
-Após obter acesso como `root`, foi acessado o diretório inicial do usuário:
-
-```bash
 cd
 pwd
 ls -la
-```
 
-O arquivo contendo a flag foi identificado e seu conteúdo foi exibido utilizando:
+The file containing the flag was identified, and its contents were displayed using:
 
-```bash
-cat <nome_do_arquivo>
-```
+cat <FILE_NAME>
 
-> A flag não está incluída neste write-up.
+The flag is not included in this write-up.
 
-### Ferramentas utilizadas
+## Tools Used
+OpenVPN — VPN connection to the lab environment
+Nmap — Port enumeration
+Ping — Connectivity testing
+Telnet — Remote access
+Linux CLI — System navigation and interaction
 
-* OpenVPN — conexão com a rede do laboratório
-* Nmap — enumeração de portas
-* Ping — teste de conectividade
-* Telnet — acesso remoto
-* Linux CLI — navegação e interação com o sistema
+## Concepts Learned
+Connecting to laboratory environments through a VPN
+ICMP and connectivity testing
+Basic port enumeration
+Identifying services based on port numbers
+Using Telnet
+Navigating the Linux filesystem
+Reading files from the command line
 
-## Conceitos aprendidos
-
-* Conexão VPN com ambientes de laboratório
-* ICMP e teste de conectividade
-* Enumeração básica de portas
-* Identificação de serviços através de portas
-* Utilização do Telnet
-* Navegação pelo sistema de arquivos Linux
-* Leitura de arquivos pela linha de comando
-
-## Resumo do processo
-
-```text
+## Process Summary
 OpenVPN
    ↓
 Ping
@@ -105,11 +85,8 @@ Nmap
    ↓
 Telnet
    ↓
-Login como root
+Login as root
    ↓
-Localização da flag
-```
+Locate the flag
 
----
-
-Lab concluído com sucesso.
+Lab completed successfully.
